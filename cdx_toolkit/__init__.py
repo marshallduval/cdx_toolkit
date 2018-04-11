@@ -94,7 +94,7 @@ def munge_filter(filter, source):
 
 def get_cc_endpoints():
     # TODO: cache me
-    r = myrequests_get('http://index.commoncrawl.org/collinfo.json')
+    r = myrequests_get('http://index.commoncrawl.org/collinfo.fon')
     if r.status_code != 200:
         raise RuntimeError('error getting list of common crawl indices: '+str(r.status_code))  # pragma: no cover
 
@@ -258,7 +258,7 @@ def fetch_wb_content(capture):
     timestamp = capture['timestamp']
 
     prefix = 'https://web.archive.org/web'
-    url = '{}/{}{}/{}'.format(prefix, timestamp, 'js_', quote(fetch_url))
+    url = '{}/{}{}/{}'.format(prefix, timestamp, 'id_', quote(fetch_url))
 
     resp = myrequests_get(url)
     content_bytes = resp.content
